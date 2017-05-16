@@ -113,8 +113,7 @@ public class MyWebSocketHandler implements WebSocketHandler {
 	 * @throws IOException
 	 */
 	public void broadcast(final TextMessage message) throws IOException {
-		Iterator<Entry<String, WebSocketSession>> it = userSocketSessionMap
-				.entrySet().iterator();
+		Iterator<Entry<String, WebSocketSession>> it = userSocketSessionMap.entrySet().iterator();
 
 		// 多线程群发
 		while (it.hasNext()) {
@@ -137,7 +136,6 @@ public class MyWebSocketHandler implements WebSocketHandler {
 
 				}).start();
 			}
-
 		}
 	}
 

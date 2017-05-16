@@ -146,12 +146,14 @@ input[type=button] {
 		}
 		var from=uid;
 		var fromName='${name}';
-		var to=uid==1?2:1;
+		var to=1;
 		
 		var websocket;
 		if ('WebSocket' in window) {
+			alert("支持WebSocket");
 			websocket = new WebSocket("ws://" + path + "/ws?uid="+uid);
 		} else if ('MozWebSocket' in window) {
+			alert("支持MozWebSocket");
 			websocket = new MozWebSocket("ws://" + path + "/ws"+uid);
 		} else {
 			websocket = new SockJS("http://" + path + "/ws/sockjs"+uid);
@@ -160,6 +162,7 @@ input[type=button] {
 			console.log("WebSocket:已连接");
 			console.log(event);
 		};
+		//接收消息
 		websocket.onmessage = function(event) {
 			var data=JSON.parse(event.data);
 			console.log("WebSocket:收到一条消息",data);
@@ -167,7 +170,6 @@ input[type=button] {
 			var html = "";
 			if(from==-1){
 				html = "<div class='sfmsg_textbox'><div class='sfmsg_text'>"+data.fromName+"&nbsp;"+data.date+"<br/>"+data.text+"</div></div>";
-				
 			}else{
 				html = "<div class='fmsg'><label class='name'>"+data.fromName+"&nbsp;"+data.date+"</label><div class='fmsg_text'>"+data.fromName+"&nbsp;"+data.date+data.text+"</div></div>";
 			}

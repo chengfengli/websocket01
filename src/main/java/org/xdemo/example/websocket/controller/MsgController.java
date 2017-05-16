@@ -73,6 +73,11 @@ public class MsgController {
 	public ModelAndView broadcast() {
 		return new ModelAndView("broadcast");
 	}
+	
+	@RequestMapping(value = "upload", method = RequestMethod.GET)
+	public void imgUpload() {
+		System.out.println("dfas");
+	}
 
 	// 发布系统广播（群发）
 	@ResponseBody
